@@ -39,6 +39,8 @@ def main():
     st.sidebar.title("感情の分類アプリ")
     st.sidebar.write("画像認識モデルを使って感情を分類します。")
     st.sidebar.write("判別が可能な種類は以下の通りです。")
+    for label in labels:
+        st.sidebar.write(f"{label}")
 
     img_source = st.sidebar.radio("画像のソースを選択してください",
                     ("画像をアップロード", "画像を撮影"))
