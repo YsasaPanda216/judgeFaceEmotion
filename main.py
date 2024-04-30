@@ -49,7 +49,7 @@ def main():
 
     if img_file is not None:
         with st.spinner("計算中・・・"):
-            img = Image.open(img_file)
+            img = Image.open(img_file).convert('RGB')
             st.image(img, caption="対象画像")
             st.write("")
 
