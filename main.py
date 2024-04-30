@@ -1,6 +1,5 @@
 import streamlit as st
 import torch
-import numpy as np
 from torchvision import transforms 
 from model import Resnet
 from PIL import Image
@@ -30,10 +29,8 @@ def predict(image, labels, model):
 
     return results
 
-    #model = net.load_state_dict(torch.load('./model_judgeFaceEmotion.pth',map_location=torch.device('cpu')))
-
 def main():
-    model = Resnet(num_classes=3)
+    model = Resnet()
     model.load_state_dict(torch.load('model_judgeFaceEmotion.pth',map_location='cpu'))
 
     with open("labels.txt", "r") as f:
@@ -59,7 +56,7 @@ def main():
             results = predict(img, labels, model)
 
             st.subheader("判定結果")
-            num_top = 5
+            num_top = 3
             for result in results[:num_top]:
                 st.write(str(round(result[1] * 100, 2)) + "%の確率で" + result[0] + "です。")
 
